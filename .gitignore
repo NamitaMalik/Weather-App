@@ -17,7 +17,7 @@ npm-debug.log
 typings/
 app/*.js
 app/*.js.map
-app/cart/*.js
-app/cart/*.js.map
-app/items/*.js
-app/items/*.js.map
+app/login/*.js
+app/login/*.js.map
+app/weather/*.js
+app/weather/*.js.map

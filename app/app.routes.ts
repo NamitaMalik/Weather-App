@@ -7,6 +7,7 @@ import {AppComponent} from './app.component';
 import {authProviders,AuthGuard} from './auth-guard.service';
 import {WeatherComponent} from './weather/weather.component';
 import {LoginComponent} from './login/login.component';
+import {LoginFormComponent} from './login/login-form.component';
 
 //RouterConfig is an array of routes
 export const routes: RouterConfig = [
@@ -15,7 +16,14 @@ export const routes: RouterConfig = [
         redirectTo: '/login',
         pathMatch: 'full'
     },
-    {path:'login',component:LoginComponent},
+    {
+        path: 'login', component: LoginComponent,
+        children: [
+            {
+                path: '',
+                component: LoginFormComponent
+            }]
+    },
     { path: 'weather', component: WeatherComponent, canActivate: [AuthGuard]
     }
 ];
