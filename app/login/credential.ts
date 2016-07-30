@@ -4,7 +4,7 @@
 
 export class Credential {
     constructor(
-        public userId: string,
+        public username: string,
         public password: string
     ) {  }
 }

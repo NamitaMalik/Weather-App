@@ -12,8 +12,9 @@ import { Credential }    from './credential';
 })
 export class LoginFormComponent {
 
-    credential = new Credential('assignment@rentomojo.com','Rentomojo123@');
+    credential = new Credential('','');
     submitted = false;
+
     onSubmit() { this.submitted = true; }
     // TODO: Remove this when we're done
     get diagnostic() { return JSON.stringify(this.credential); }
