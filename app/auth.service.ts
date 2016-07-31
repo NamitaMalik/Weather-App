@@ -13,20 +13,10 @@ import 'rxjs/add/operator/delay';
 @Injectable()
 export class AuthService {
     constructor (private http: Http) {}
-    isLoggedIn: boolean = false;
+    isLoggedIn: boolean = true;
 
     // store the URL so we can redirect after logging in
     redirectUrl: string;
-
-    /*addHero (name: string): Observable<Hero> {
-        let body = JSON.stringify({ name });
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-
-        return this.http.post(this.heroesUrl, body, options)
-            .map(this.extractData)
-            .catch(this.handleError);
-    }*/
 
     login(form): Observable<Credential> {
         let url = 'http://medicalassistant­jazzyarchitect.rhcloud.com/api/user/login';
@@ -38,9 +28,6 @@ export class AuthService {
         return this.http.post(url, body, options)
             .map(this.extractData)
             .catch(this.handleError);
-
-
-
         //return Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
     }
 

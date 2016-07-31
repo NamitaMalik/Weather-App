@@ -8,6 +8,7 @@ import {authProviders,AuthGuard} from './auth-guard.service';
 import {WeatherComponent} from './weather/weather.component';
 import {LoginComponent} from './login/login.component';
 import {LoginFormComponent} from './login/login-form.component';
+import {WeatherSearchComponent} from './weather/weather-search.component';
 
 //RouterConfig is an array of routes
 export const routes:RouterConfig = [
@@ -25,7 +26,12 @@ export const routes:RouterConfig = [
             }]
     },
     {
-        path: 'weather', component: WeatherComponent, canActivate: [AuthGuard]
+        path: 'weather', component: WeatherComponent, canActivate: [AuthGuard],
+        children: [
+            {
+                path: '',
+                component: WeatherSearchComponent
+            }]
     }
 ];
 
