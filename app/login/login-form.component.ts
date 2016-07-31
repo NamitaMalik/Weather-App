@@ -4,18 +4,24 @@
 
 import { Component } from '@angular/core';
 import { NgForm }    from '@angular/forms';
-import { Credential }    from './credential';
+import { Credential } from './credential';
+import {AuthService} from '../auth.service'
 
 @Component({
     selector: 'login-form',
     templateUrl: 'app/login/login-form.component.html'
 })
 export class LoginFormComponent {
-
+    constructor(private _authService:AuthService){}
     credential = new Credential('','');
     submitted = false;
-
-    onSubmit() { this.submitted = true; }
-    // TODO: Remove this when we're done
-    get diagnostic() { return JSON.stringify(this.credential); }
+    status = false;
+    errorMessage='';
+    onSubmit(form) {
+    this.submitted = true;
+    this._authService.login(form)
+    .subscribe(
+            status  => this.status=<any>status,
+                error =>  this.errorMessage = <any>error);
+    }
 }

@@ -14,6 +14,6 @@
                 Password is required and should contain minimum 8 alphanumeric characters with at least one capital letter and a symbol
             </div>
         </div>
-        <button type="submit" [disabled]="!loginForm.form.valid" class="btn btn-default">Submit</button>
+        <button type="button" (click)= "onSubmit(loginForm.value)" [disabled]="!loginForm.form.valid" class="btn btn-default">Submit</button>
     </form>
 </div>
