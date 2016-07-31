@@ -21,3 +21,6 @@ app/login/*.js
 app/login/*.js.map
 app/weather/*.js
 app/weather/*.js.map
+app/common/directives/*.js
+app/common/directives/*.js.map
+
