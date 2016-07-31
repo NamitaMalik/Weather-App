@@ -8,6 +8,7 @@ import {WeatherService} from './weather-service';
 
 
 @Component({
+    selector:'display-weather',
     template: `
     <div>
         <router-outlet></router-outlet>
