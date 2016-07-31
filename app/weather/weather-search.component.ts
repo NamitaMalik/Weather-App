@@ -6,13 +6,14 @@ import {Component} from '@angular/core';
 import {WeatherService} from './weather-service';
 import {Weather} from './weather';
 import {TemperaturePipe} from './temperature'
+import {EnterDirective} from '../common/directives/enter.directive'
 
 @Component({
     template: `
     <div>
         <div class="container">
         <div>
-            <input type="text" [(ngModel)]="search.term" name="searchterm" #searchterm="ngModel" required>
+            <input type="text" [(ngModel)]="search.term" name="searchterm" #searchterm="ngModel" placeholder="Enter city to search"  (enter)="getData($event)" required>
              <button type="button" (click)= "getData()" class="btn btn-default">Submit</button>
         </div>
         <div>{{weather?.name}} {{weather?.country}}</div>
@@ -48,7 +49,8 @@ import {TemperaturePipe} from './temperature'
         </div>
     </div>
     `,
-    pipes:[TemperaturePipe]
+    pipes: <any>[TemperaturePipe],
+    directives: <any>[EnterDirective]
 })
 
 export class WeatherSearchComponent {
@@ -64,17 +66,17 @@ export class WeatherSearchComponent {
     getData() {
         this._weatherService.getData(this.search.term)
             .subscribe(
-                data => {
+            (data) => {
+                this.search.term = '';
                 this.weather.name = data.name;
                 this.weather.country = data.sys.country;
                 this.weather.temperature = data.main.temp;
                 this.weather.data = <any>{};
                 this.weather.data.wind = data.wind.speed;
-                this.weather.data.sunrise = data.sys.sunrise+'000';
-                this.weather.data.sunset = data.sys.sunset+'000';
+                this.weather.data.sunrise = data.sys.sunrise + '000';
+                this.weather.data.sunset = data.sys.sunset + '000';
                 this.weather.data.pressure = data.main.pressure;
                 this.weather.data.humidity = data.main.humidity;
-
             },
                 error => this.errorMessage = <any>error
         );

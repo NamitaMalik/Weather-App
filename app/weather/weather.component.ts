@@ -10,7 +10,6 @@ import {WeatherService} from './weather-service';
 @Component({
     template: `
     <div>
-        <h2>Weather Component</h2>
         <router-outlet></router-outlet>
     </div>
     `,
