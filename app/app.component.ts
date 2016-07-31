@@ -9,8 +9,14 @@ import { ROUTER_DIRECTIVES }  from '@angular/router';
 @Component({
     selector: 'my-app',
     template: `
-        <a routerLink="/login">Login</a>
-        <a routerLink="/weather" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Weather</a>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+            <ul class="nav navbar-nav">
+                <li><a routerLink="/weather" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Weather</a></li>
+                <li> <a routerLink="/login">Login</a></li>
+            </ul>
+        </div>
+        </nav>
         <router-outlet></router-outlet>
 
     `,
