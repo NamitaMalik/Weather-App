@@ -1,5 +1,5 @@
 /**
- * Created by namita on 7/26/16.
+ * Created by namita on 7/7/16.
  */
 
 import { Injectable }     from '@angular/core';
@@ -11,10 +11,15 @@ import { AuthService }       from './auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    constructor(private authService: AuthService, private router: Router) {}
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    constructor(private authService:AuthService, private router:Router) {
+    }
+
+    canActivate(route:ActivatedRouteSnapshot, state:RouterStateSnapshot) {
         console.log(state.url);
-        if (this.authService.isLoggedIn) { return true; };
+        if (this.authService.isLoggedIn) {
+            return true;
+        }
+        ;
         this.authService.redirectUrl = state.url;
         //this.router.navigate(['/login']);
         return false;

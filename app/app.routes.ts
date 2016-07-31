@@ -10,7 +10,7 @@ import {LoginComponent} from './login/login.component';
 import {LoginFormComponent} from './login/login-form.component';
 
 //RouterConfig is an array of routes
-export const routes: RouterConfig = [
+export const routes:RouterConfig = [
     {
         path: '',
         redirectTo: '/login',
@@ -24,7 +24,8 @@ export const routes: RouterConfig = [
                 component: LoginFormComponent
             }]
     },
-    { path: 'weather', component: WeatherComponent, canActivate: [AuthGuard]
+    {
+        path: 'weather', component: WeatherComponent, canActivate: [AuthGuard]
     }
 ];
 

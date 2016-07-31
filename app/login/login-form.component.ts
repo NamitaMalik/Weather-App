@@ -12,16 +12,19 @@ import {AuthService} from '../auth.service'
     templateUrl: 'app/login/login-form.component.html'
 })
 export class LoginFormComponent {
-    constructor(private _authService:AuthService){}
-    credential = new Credential('','');
+    constructor(private _authService:AuthService) {
+    }
+
+    credential = new Credential('', '');
     submitted = false;
     status = false;
-    errorMessage='';
+    errorMessage = '';
+
     onSubmit(form) {
-    this.submitted = true;
-    this._authService.login(form)
-    .subscribe(
-            status  => this.status=<any>status,
+        this.submitted = true;
+        this._authService.login(form)
+            .subscribe(
+                status  => this.status = <any>status,
                 error =>  this.errorMessage = <any>error);
     }
 }
