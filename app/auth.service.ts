@@ -12,15 +12,18 @@ import 'rxjs/add/operator/delay';
 
 @Injectable()
 export class AuthService {
-    constructor (private http: Http) {}
-    isLoggedIn: boolean = true;
+    constructor (private http: Http) {
+        localStorage.setItem("userName","assignment@rentomojo.com");
+        localStorage.setItem("password","Rentomojo123@");
+    }
+    isLoggedIn: boolean = false;
 
     // store the URL so we can redirect after logging in
     redirectUrl: string;
 
-    login(form): Observable<Credential> {
+
+    /*login(form): Observable<Credential> {
         let url = 'http://medicalassistant­jazzyarchitect.rhcloud.com/api/user/login';
-        console.log("auth",form);
         let body = JSON.stringify({ name:form.username,password:form.password });
         let headers = new Headers({'Content-Type':'application/json','x­service­id':'RandomUsesKey­86452'});
         let options = new RequestOptions({ headers: headers });
@@ -29,21 +32,31 @@ export class AuthService {
             .map(this.extractData)
             .catch(this.handleError);
         //return Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
+    }*/
+
+    /*private extractData(res: Response) {
+     let body = res.json();
+     return body;
+     }
+
+     private handleError (error: any) {
+     let errMsg = (error.message) ? error.message :
+     error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+     console.error(errMsg); // log to console instead
+     return Observable.throw(errMsg);
+     }*/
+
+    login(form){
+        let validEmail = localStorage.getItem("userName");
+        let validPass = localStorage.getItem("password");
+        if(form.username==validEmail && form.password==validPass ){
+            this.redirectUrl = '/weather';
+            return Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
+        }
+
+
     }
 
-    private extractData(res: Response) {
-        let body = res.json();
-        console.log(body);
-        return body || [];
-    }
-    private handleError (error: any) {
-        // In a real world app, we might use a remote logging infrastructure
-        // We'd also dig deeper into the error to get a better message
-        let errMsg = (error.message) ? error.message :
-            error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        console.error(errMsg); // log to console instead
-        return Observable.throw(errMsg);
-    }
 
 
     logout() {
