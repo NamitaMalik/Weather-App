@@ -16,7 +16,7 @@ export class LoginFormComponent {
     constructor(private _authService:AuthService,private router:Router) {
     }
 
-    credential = new Credential('', '');
+    credential = new Credential('','');
     submitted = false;
     status = false;
     errorMessage = '';
@@ -27,10 +27,9 @@ export class LoginFormComponent {
             .subscribe(
             (status)  => {
                 this.status = <any>status;
-                if(this.status){
+                if (this.status) {
                     this.router.navigate([this._authService.redirectUrl]);
                 }
-            },
-                error =>  this.errorMessage = <any>error);
+            })
     }
 }

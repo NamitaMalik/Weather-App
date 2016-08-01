@@ -13,7 +13,7 @@ import { ROUTER_DIRECTIVES }  from '@angular/router';
       <div class="container">
             <ul class="nav navbar-nav">
                 <li><a routerLink="/weather" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Weather</a></li>
-                <li> <a routerLink="/login">Login</a></li>
+                <li *ngIf="isLoggedIn=='false'"> <a routerLink="/login">Login</a></li>
             </ul>
         </div>
         </nav>
@@ -25,4 +25,5 @@ import { ROUTER_DIRECTIVES }  from '@angular/router';
 })
 
 export class AppComponent {
+    private isLoggedIn = localStorage.getItem("isLoggedIn");
 }

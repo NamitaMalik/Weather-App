@@ -6,7 +6,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({name: 'temperature'})
 export class TemperaturePipe implements PipeTransform {
-    transform(inputValue:number):string {
-        return inputValue ? (parseInt(inputValue - 273.15) + '\xB0 C') : '';
+    transform(inputValue:any):string {
+        return inputValue ? (parseInt(inputValue - 273.15 + '') + '\xB0 C') : '';
     }
 }

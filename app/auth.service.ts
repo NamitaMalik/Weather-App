@@ -15,10 +15,9 @@ export class AuthService {
     constructor (private http: Http) {
         localStorage.setItem("userName","assignment@rentomojo.com");
         localStorage.setItem("password","Rentomojo123@");
+        localStorage.setItem("isLoggedIn","false");
     }
     isLoggedIn: boolean = false;
-
-    // store the URL so we can redirect after logging in
     redirectUrl: string;
 
 
@@ -51,13 +50,16 @@ export class AuthService {
         let validPass = localStorage.getItem("password");
         if(form.username==validEmail && form.password==validPass ){
             this.redirectUrl = '/weather';
+            localStorage.setItem("isLoggedIn","true");
             return Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
+        }else{
+            this.redirectUrl = '/login';
+            localStorage.setItem("isLoggedIn","false");
+            return Observable.of(true).delay(1000).do(val => this.isLoggedIn = false);
         }
 
 
     }
-
-
 
     logout() {
         this.isLoggedIn = false;
