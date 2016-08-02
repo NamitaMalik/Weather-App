@@ -15,8 +15,9 @@ import {AuthService} from './auth.service';
             <ul class="nav navbar-nav">
                 <li><a routerLink="/weather" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Weather</a></li>
                 <li *ngIf="!isLoggedIn"> <a routerLink="/login">Login</a></li>
-                <li *ngIf="isLoggedIn"> <a>Logout</a></li>
+                <li *ngIf="isLoggedIn"> <a (click)="logout()">Logout</a></li>
             </ul>
+            {{isLoggedIn}}
         </div>
         </nav>
         <router-outlet></router-outlet>
@@ -28,10 +29,12 @@ import {AuthService} from './auth.service';
 
 export class AppComponent {
     private isLoggedIn : boolean = false;
-    constructor( @Inject(AuthService) authService : AuthService){
+    constructor(private authService : AuthService){
     authService.isLoggedIn.subscribe(loggedIn => {
-    console.log(loggedIn);
     this.isLoggedIn = loggedIn})
 }
+    logout(){
+        this.authService.logout();
+    }
 
 }
