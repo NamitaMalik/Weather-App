@@ -13,9 +13,8 @@ import {AuthService} from './auth.service';
     <nav class="navbar navbar-default navbar-static-top">
       <div class="container">
             <ul class="nav navbar-nav">
-                <li><a routerLink="/weather" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Weather</a></li>
-                <li *ngIf="!isLoggedIn"> <a routerLink="/login">Login</a></li>
-                <li *ngIf="isLoggedIn"> <a (click)="logout()">Logout</a></li>
+                <li *ngIf="isLoggedIn"><a routerLink="/weather" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Weather</a></li>
+                <li *ngIf="isLoggedIn"> <a href="javascript:void(0)" (click)="logout()">Logout</a></li>
             </ul>
         </div>
         </nav>

@@ -18,7 +18,7 @@ export class AuthService {
     constructor (private http: Http, private router:Router) {
         localStorage.setItem("userName","assignment@rentomojo.com");
         localStorage.setItem("password","Rentomojo123@");
-        let status = localStorage.getItem("isLoggedIn") == 'false' ? false : true;
+        let status = localStorage.getItem("isLoggedIn") == 'false' ||  localStorage.getItem("isLoggedIn") == undefined ? false : true;
         this.isLoggedIn.next(status);
     }
     redirectUrl: string;
@@ -58,7 +58,7 @@ export class AuthService {
         }else{
             this.redirectUrl = '/login';
             localStorage.setItem("isLoggedIn","false");
-            return Observable.of(true).delay(1000).do(val => this.isLoggedIn.next(false));
+            return Observable.of(false).delay(1000).do(val => this.isLoggedIn.next(false));
         }
 
     }

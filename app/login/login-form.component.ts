@@ -13,22 +13,25 @@ import {AuthService} from '../auth.service'
     templateUrl: 'app/login/login-form.component.html'
 })
 export class LoginFormComponent {
-    constructor(private _authService:AuthService,private router:Router) {
+    constructor(private _authService:AuthService, private router:Router) {
     }
 
-    credential = new Credential('','');
+    credential = new Credential('', '');
     submitted = false;
     status = false;
     errorMessage = '';
 
     onSubmit(form) {
         this.submitted = true;
+        this.errorMessage = '';
         this._authService.login(form)
             .subscribe(
             (status)  => {
                 this.status = <any>status;
                 if (this.status) {
                     this.router.navigate([this._authService.redirectUrl]);
+                } else {
+                    this.errorMessage = 'Invalid username or password.';
                 }
             })
     }
