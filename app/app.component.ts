@@ -17,23 +17,25 @@ import {AuthService} from './auth.service';
                 <li *ngIf="!isLoggedIn"> <a routerLink="/login">Login</a></li>
                 <li *ngIf="isLoggedIn"> <a (click)="logout()">Logout</a></li>
             </ul>
-            {{isLoggedIn}}
         </div>
         </nav>
         <router-outlet></router-outlet>
 
     `,
-    directives:[ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES]
 
 })
 
 export class AppComponent {
-    private isLoggedIn : boolean = false;
-    constructor(private authService : AuthService){
-    authService.isLoggedIn.subscribe(loggedIn => {
-    this.isLoggedIn = loggedIn})
-}
-    logout(){
+    private isLoggedIn:boolean = false;
+
+    constructor(private authService:AuthService) {
+        authService.isLoggedIn.subscribe(loggedIn => {
+            this.isLoggedIn = loggedIn
+        })
+    }
+
+    logout() {
         this.authService.logout();
     }
 

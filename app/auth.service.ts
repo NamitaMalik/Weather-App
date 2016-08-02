@@ -7,6 +7,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import {Credential} from './login/credential';
 import {BehaviorSubject} from 'rxjs/Rx';
+import { Router } from '@angular/router';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
@@ -14,7 +15,7 @@ import 'rxjs/add/operator/delay';
 @Injectable()
 export class AuthService {
     isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-    constructor (private http: Http) {
+    constructor (private http: Http, private router:Router) {
         localStorage.setItem("userName","assignment@rentomojo.com");
         localStorage.setItem("password","Rentomojo123@");
         let status = localStorage.getItem("isLoggedIn") == 'false' ? false : true;
@@ -60,11 +61,11 @@ export class AuthService {
             return Observable.of(true).delay(1000).do(val => this.isLoggedIn.next(false));
         }
 
-
     }
 
     logout() {
         localStorage.setItem("isLoggedIn","false");
+        this.router.navigate(['/login']);
         this.isLoggedIn.next(false);
     }
 }
