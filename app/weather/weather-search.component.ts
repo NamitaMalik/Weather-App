@@ -17,7 +17,7 @@ import {EnterDirective} from '../common/directives/enter.directive'
                         <div class="inner-addon right-addon">
                             <i class="glyphicon glyphicon-search"></i>
                             <input type="text" [(ngModel)]="search.term" name="searchterm" #searchterm="ngModel"
-                                   class="form-control" placeholder="search" (enter)="getData($event)" required>
+                                   class="form-control" placeholder="Search" (enter)="getData($event)" required>
                         </div>
                     </div>
                     <div class="col-md-6"></div>
