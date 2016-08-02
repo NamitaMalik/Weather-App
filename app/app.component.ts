@@ -2,9 +2,10 @@
  * Created by namita on 7/30/16.
  */
 
-import {Component} from '@angular/core';
+import {Component,Inject} from '@angular/core';
 import './rxjs-operators';
 import { ROUTER_DIRECTIVES }  from '@angular/router';
+import {AuthService} from './auth.service';
 
 @Component({
     selector: 'my-app',
@@ -13,7 +14,8 @@ import { ROUTER_DIRECTIVES }  from '@angular/router';
       <div class="container">
             <ul class="nav navbar-nav">
                 <li><a routerLink="/weather" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Weather</a></li>
-                <li *ngIf="isLoggedIn=='false'"> <a routerLink="/login">Login</a></li>
+                <li *ngIf="!isLoggedIn"> <a routerLink="/login">Login</a></li>
+                <li *ngIf="isLoggedIn"> <a>Logout</a></li>
             </ul>
         </div>
         </nav>
@@ -25,5 +27,11 @@ import { ROUTER_DIRECTIVES }  from '@angular/router';
 })
 
 export class AppComponent {
-    private isLoggedIn = localStorage.getItem("isLoggedIn");
+    private isLoggedIn : boolean = false;
+    constructor( @Inject(AuthService) authService : AuthService){
+    authService.isLoggedIn.subscribe(loggedIn => {
+    console.log(loggedIn);
+    this.isLoggedIn = loggedIn})
+}
+
 }

@@ -5,19 +5,20 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import {Credential} from './login/credential'
+import {Credential} from './login/credential';
+import {BehaviorSubject} from 'rxjs/Rx';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
 
 @Injectable()
 export class AuthService {
+    isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     constructor (private http: Http) {
         localStorage.setItem("userName","assignment@rentomojo.com");
         localStorage.setItem("password","Rentomojo123@");
-        this.isLoggedIn=localStorage.getItem("isLoggedIn")!='false';
+        this.isLoggedIn.next(false);
     }
-    isLoggedIn: boolean;
     redirectUrl: string;
 
 
@@ -51,16 +52,16 @@ export class AuthService {
         if(form.username==validEmail && form.password==validPass ){
             this.redirectUrl = '/weather';
             localStorage.setItem("isLoggedIn","true");
-            return Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
+            return Observable.of(true).delay(1000).do(val => this.isLoggedIn.next(true));
         }else{
             this.redirectUrl = '/login';
-            return Observable.of(true).delay(1000).do(val => this.isLoggedIn = false);
+            return Observable.of(true).delay(1000).do(val => this.isLoggedIn.next(false));
         }
 
 
     }
 
     logout() {
-        this.isLoggedIn = false;
+        this.isLoggedIn.next(false);
     }
 }
