@@ -1,23 +1,23 @@
 /**
- * Created by namita on 7/7/16.
+ * Created by namita on 7/30/16.
  */
 
-import { Injectable }     from '@angular/core';
-import { CanActivate, Router,
-    ActivatedRouteSnapshot,
-    RouterStateSnapshot }    from '@angular/router';
-import { AuthService }       from './auth.service';
+import { Injectable } from '@angular/core';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { AuthService }  from './auth.service';
 
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    private isLoggedIn : boolean;
+    private isLoggedIn:boolean;
+
     constructor(private authService:AuthService, private router:Router) {
     }
 
     canActivate(route:ActivatedRouteSnapshot, state:RouterStateSnapshot) {
         this.authService.isLoggedIn.subscribe(loggedIn => {
-            this.isLoggedIn = loggedIn});
+            this.isLoggedIn = loggedIn
+        });
         if (this.isLoggedIn) {
             return true;
         }

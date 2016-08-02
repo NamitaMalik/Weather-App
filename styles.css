@@ -4,6 +4,7 @@
     padding: 0;
     width: 24em;
 }
+
 .items li .text {
     cursor: pointer;
     position: relative;
@@ -15,44 +16,25 @@
     border-radius: 4px;
 }
 
-.icon{
-    cursor: pointer;
-    position: relative;
-    left: 0;
-    margin: .5em;
-    padding: .3em .3em;
-    height: 2.6em;
-    border-radius: 4px;
-}
-
-.smallIcon{
-    cursor: pointer;
-    position: relative;
-    left: 0;
-    padding: 1.5em .3em;
-    height: 2.6em;
-    width:6.33% !important;
-}
-
-.fLeft{
+.fLeft {
     float: left;
 }
 
-.fRight{
+.fRight {
     float: right;
 }
 
-.fs4{
+.fs4 {
     font-size: 4em;
 }
 
-.box{
+.box {
     border-radius: 4px;
-    background-color:royalblue;
+    background-color: royalblue;
 }
 
-.mt14{
-    margin-top:14px;
+.mt14 {
+    margin-top: 14px;
 }
 
 .inner-addon {
@@ -65,11 +47,21 @@
     pointer-events: none;
 }
 
-.left-addon .glyphicon  { left:  0px;}
-.right-addon .glyphicon { right: 0px;}
+.left-addon .glyphicon {
+    left: 0px;
+}
 
-.left-addon input  { padding-left:  30px; }
-.right-addon input { padding-right: 30px; }
+.right-addon .glyphicon {
+    right: 0px;
+}
+
+.left-addon input {
+    padding-left: 30px;
+}
+
+.right-addon input {
+    padding-right: 30px;
+}
 
 body {
     margin: 10px;
